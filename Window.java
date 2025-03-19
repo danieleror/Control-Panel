@@ -19,6 +19,7 @@ public class Window extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);//stops the program when the window closes
         pack();
         setVisible(true);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     public void run(){
