@@ -8,9 +8,12 @@ public class Controller extends JPanel{
 
     private boolean mousePressed;
 
-    public Controller() {
-        setPreferredSize(new Dimension(900, 600));
-        setBackground(Color.WHITE);
+    public Controller(int width, int height) {
+        setBackground(Color.DARK_GRAY);
+        setPreferredSize(new Dimension(width, height));
+    }
 
+    public void update(MenuOption currentMenu){
+        
     }
 }
