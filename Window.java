@@ -16,8 +16,8 @@ public class Window extends JFrame{
         int width = (int) screensize.getWidth();
         int height = (int) screensize.getHeight();
         setPreferredSize(new Dimension(width, height));
-        menu = new Menu((int) (width*0.12), height);
-        controller = new Controller((int) (width*0.88), height);
+        menu = new Menu((int) (width*0.1), height);
+        controller = new Controller((int) (width*0.9), height);
         getContentPane().add(menu, BorderLayout.EAST); //puts the menu on the right side of the screen
         getContentPane().add(controller, BorderLayout.WEST);        
         setDefaultCloseOperation(EXIT_ON_CLOSE);//stops the program when the window closes

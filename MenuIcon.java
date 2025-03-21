@@ -76,7 +76,7 @@ public class MenuIcon extends JComponent{
         Graphics2D g2 = (Graphics2D) g;
         if(mousePressed || currentlySelected){
             if(mousePressed)
-                g2.setColor(Color.ORANGE);
+                g2.setColor(new Color(255, 128, 0));
             else
                 g2.setColor(Color.LIGHT_GRAY);
             g2.fillRoundRect((int) (getWidth()*0.05), (int) (getHeight()*0.05), (int) (getWidth()*0.9), (int) (getHeight()*0.9), (int) (getWidth()*0.35), (int) (getHeight()*0.35));
