@@ -7,16 +7,17 @@ public class Window extends JFrame{
     private Menu menu;
     private Controller controller;
 
-    private final int WIDTH = 1024, HEIGHT = 600;
-
     private boolean mousePressed;
     private double FPS;
 
     public Window(){
         FPS = 10.0;
-        setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        menu = new Menu((int) (WIDTH*0.12), HEIGHT);
-        controller = new Controller((int) (WIDTH*0.88), HEIGHT);
+        Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
+        int width = (int) screensize.getWidth();
+        int height = (int) screensize.getHeight();
+        setPreferredSize(new Dimension(width, height));
+        menu = new Menu((int) (width*0.12), height);
+        controller = new Controller((int) (width*0.88), height);
         getContentPane().add(menu, BorderLayout.EAST); //puts the menu on the right side of the screen
         getContentPane().add(controller, BorderLayout.WEST);        
         setDefaultCloseOperation(EXIT_ON_CLOSE);//stops the program when the window closes
@@ -24,7 +25,6 @@ public class Window extends JFrame{
         GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
         device.setFullScreenWindow(getWindows()[0]);
         setVisible(true);
-        //setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     public void run(){
