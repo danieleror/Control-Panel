@@ -21,8 +21,8 @@ public class Window extends JFrame{
         getContentPane().add(controller, BorderLayout.WEST);        
         setDefaultCloseOperation(EXIT_ON_CLOSE);//stops the program when the window closes
         pack();
-        // GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
-        // device.setFullScreenWindow(getWindows()[0]);
+        GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
+        device.setFullScreenWindow(getWindows()[0]);
         setVisible(true);
         //setExtendedState(JFrame.MAXIMIZED_BOTH);
     }

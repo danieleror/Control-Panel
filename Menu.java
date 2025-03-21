@@ -20,6 +20,7 @@ public class Menu extends JPanel{
         menus.put(MenuOption.SETTINGS,new MenuIcon("images/gear.png", width));
         menus.put(MenuOption.LIGHTS,new MenuIcon("images/lightbulb.png", width));
         menus.put(MenuOption.ELECTRICAL,new MenuIcon("images/plug.png", width));
+        menus.put(MenuOption.POWER, new MenuIcon("images/power.png", width));
         for(MenuOption menu : MenuOption.values()){
             add(menus.get(menu));
         }
@@ -35,6 +36,8 @@ public class Menu extends JPanel{
             menus.get(menu).setSelected(false);
             if(menus.get(menu).checkFlag()){
                 currentMenu = menu;
+                if(menu == MenuOption.POWER)
+                    System.exit(0);
             }
         }
         menus.get(currentMenu).setSelected(true);
