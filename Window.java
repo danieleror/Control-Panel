@@ -11,7 +11,7 @@ public class Window extends JFrame{
     private double FPS;
 
     public Window(){
-        FPS = 12.0;
+        FPS = 5.0;
         Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
         int width = (int) screensize.getWidth();
         int height = (int) screensize.getHeight();
