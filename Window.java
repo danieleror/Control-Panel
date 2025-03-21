@@ -13,7 +13,7 @@ public class Window extends JFrame{
     private double FPS;
 
     public Window(){
-        FPS = 30.0;
+        FPS = 10.0;
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         menu = new Menu((int) (WIDTH*0.12), HEIGHT);
         controller = new Controller((int) (WIDTH*0.88), HEIGHT);
