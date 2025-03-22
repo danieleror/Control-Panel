@@ -12,10 +12,13 @@ public class Window extends JFrame{
 
     private int sleepAfterSeconds, inactiveFrameCount;
 
+    private boolean sleeping;
+
     public Window(){
         FPS = 5.0;
         inactiveFrameCount = 0;
-        sleepAfterSeconds = 10;
+        sleepAfterSeconds = 4;
+        sleeping = false;
         Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
         int width = (int) screensize.getWidth();
         int height = (int) screensize.getHeight();
@@ -25,7 +28,6 @@ public class Window extends JFrame{
         sleepScreen = new SleepScreen(width, height);
         getContentPane().add(menu, BorderLayout.EAST); //puts the menu on the right side of the screen
         getContentPane().add(controller, BorderLayout.WEST);        
-        getContentPane().add(sleepScreen);
         setDefaultCloseOperation(EXIT_ON_CLOSE);//stops the program when the window closes
         pack();
         GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
@@ -36,29 +38,38 @@ public class Window extends JFrame{
     public void run(){
         while(true)
         {
-            boolean actionFromSleepScreen = sleepScreen.update();
-            sleepScreen.repaint();
-
             boolean actionFromMenu = menu.update();
-            menu.repaint();
-
             boolean actionFromController = controller.update(menu.getCurrentMenu());
+            boolean actionFromSleepScreen = sleepScreen.update();
+
             controller.repaint();
+            menu.repaint();
+            sleepScreen.repaint();
 
             if(actionFromSleepScreen || actionFromMenu || actionFromController){
                 inactiveFrameCount = 0;
-                sleepScreen.setVisible(false);
-                menu.setVisible(true);
-                controller.setVisible(true);
+                if(sleeping){ 
+                    getContentPane().remove(sleepScreen);
+                    getContentPane().add(controller, BorderLayout.WEST);
+                    getContentPane().add(menu, BorderLayout.EAST);
+                    revalidate();
+                    sleeping = false;
+                    System.out.println("wake up");
+                }
             }
             else
                 inactiveFrameCount ++;
             
             if(inactiveFrameCount >= sleepAfterSeconds*FPS){
                 inactiveFrameCount = (int) (sleepAfterSeconds*FPS); //so the screen stays asleep, but will not increment to too large a number
-                menu.setVisible(false);
-                controller.setVisible(false);
-                sleepScreen.setVisible(true);                
+                if(!sleeping){
+                    getContentPane().remove(controller);
+                    getContentPane().remove(menu);
+                    getContentPane().add(sleepScreen);
+                    revalidate();
+                    sleeping = true;
+                    System.out.println("going to sleep");
+                }
             }
 
             try {

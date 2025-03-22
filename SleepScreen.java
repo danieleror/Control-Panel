@@ -9,7 +9,6 @@ public class SleepScreen extends JPanel{
     private boolean flag;
 
     public SleepScreen(int width, int height){
-        setBackground(new Color(20, 20, 20));
         setPreferredSize(new Dimension(width, height));
         message = "Tap to Wake";
 
@@ -54,6 +53,8 @@ public class SleepScreen extends JPanel{
 
     public void paintComponent(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
+        g2.setColor(new Color(20, 20, 20));
+        g2.fillRect(0, 0, getSize().width, getSize().height);
         g2.setFont(new Font("Serif", Font.BOLD, 100));
         g2.setColor(Color.WHITE);
         g2.drawString(message, 100, 100);
