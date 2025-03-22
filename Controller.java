@@ -9,19 +9,25 @@ public class Controller extends JPanel{
     private boolean mousePressed;
 
     private MenuOption currentMenu;
+    
+    private Switch s;
 
     public Controller(int width, int height) {
         setBackground(Color.DARK_GRAY);
         currentMenu = MenuOption.HOME;
         setPreferredSize(new Dimension(width, height));
-        Switch s = new Switch(100);
+        s = new Switch(100);
         s.setLocation(0, 0);
         add(s);
         
     }
 
-    public void update(MenuOption currentMenu){
+    public boolean update(MenuOption currentMenu){
+        boolean flag = false;
+        if(s.checkFlag())
+            flag = true;
         this.currentMenu = currentMenu;
+        return flag;
     }
 
 }

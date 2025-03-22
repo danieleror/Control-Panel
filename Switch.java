@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.geom.RoundRectangle2D;
 
 public class Switch extends JComponent{
 
@@ -9,7 +10,7 @@ public class Switch extends JComponent{
 
     private Color primaryColor, offColor, onColor;
 
-    private boolean status;  // true if switch is on, false if it is off
+    private boolean status, flag;  // true if switch is on, false if it is off
 
     public Switch(int size){
         height = size;
@@ -22,6 +23,7 @@ public class Switch extends JComponent{
 
         status = false;
 
+        //gets mouse input
         addMouseListener(new MouseListener() {
 
             @Override
@@ -32,6 +34,7 @@ public class Switch extends JComponent{
             @Override
             public void mousePressed(MouseEvent e) {
                 status = !status;
+                flag = false;
             }
 
             @Override
@@ -50,6 +53,18 @@ public class Switch extends JComponent{
             }
             
         });
+    }
+
+    /**
+     * checkFlag() returns true if the user has clicked this menu icon. After the method call, the flag will be set to false. 
+     * @return
+     */
+    public boolean checkFlag(){
+        if(flag){
+            flag = false;
+            return true;
+        }
+        return false;
     }
 
     public void paintComponent(Graphics g){

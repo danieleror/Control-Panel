@@ -34,15 +34,18 @@ public class Menu extends JPanel{
         return currentMenu;
     }
 
-    public void update(){
+    public boolean update(){
+        boolean flag = false;
         for(MenuOption menu : MenuOption.values()){
             menus.get(menu).setSelected(false);
             if(menus.get(menu).checkFlag()){
+                flag = true;
                 currentMenu = menu;
                 if(menu == MenuOption.POWER)
                     System.exit(0);
             }
         }
         menus.get(currentMenu).setSelected(true);
+        return flag;
     }
 }

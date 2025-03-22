@@ -33,12 +33,12 @@ public class MenuIcon extends JComponent{
 
             @Override
             public void mousePressed(MouseEvent e) {
-                // unused
+                flag = true;
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                flag = true;
+                // unused
             }
 
             @Override
