@@ -57,7 +57,7 @@ public class SleepScreen extends JPanel{
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(new Color(20, 20, 20));
         g2.fillRect(0, 0, getSize().width, getSize().height);
-        g2.setFont(new Font("Serif", Font.BOLD, fontSize));
+        g2.setFont(new Font("Futura", Font.BOLD, fontSize));
         g2.setColor(Color.WHITE);
         g2.drawString(message, getWidth()/2 - (int) (message.length()*(fontSize/2)/2), getHeight()/2);
     }

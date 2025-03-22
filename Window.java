@@ -17,7 +17,7 @@ public class Window extends JFrame{
     public Window(){
         FPS = 5.0;
         inactiveFrameCount = 0;
-        sleepAfterSeconds = 15;
+        sleepAfterSeconds = 2;
         sleeping = false;
 
         //gets the device screen size and sets that to be the size of the JFrame
