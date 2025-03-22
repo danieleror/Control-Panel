@@ -24,10 +24,12 @@ public class Menu extends JPanel{
         menus.put(MenuOption.ELECTRICAL,new MenuIcon("images/plug.png", width));
         menus.put(MenuOption.POWER, new MenuIcon("images/power.png", width));
 
+        //adds all menus to map and sets HOME to be selected menu on startup
         for(MenuOption menu : MenuOption.values()){
             add(menus.get(menu));
         }
         currentMenu = MenuOption.HOME;
+
     }
 
     public MenuOption getCurrentMenu(){
@@ -35,17 +37,25 @@ public class Menu extends JPanel{
     }
 
     public boolean update(){
-        boolean flag = false;
+        //updates the currently selected menu
         for(MenuOption menu : MenuOption.values()){
+            //starts by resetting them all to unselected
             menus.get(menu).setSelected(false);
             if(menus.get(menu).checkFlag()){
-                flag = true;
+                //if this menu was clicked, save that the mouse was pressed, and save the currentMenu
+                mousePressed = true;
                 currentMenu = menu;
                 if(menu == MenuOption.POWER)
-                    System.exit(0);
+                    System.exit(0);  //Powers off if power button was clicked
             }
         }
+        //now that currentMenu is updated from above, we can set it to selected
         menus.get(currentMenu).setSelected(true);
-        return flag;
+
+        if(mousePressed){
+            mousePressed = false;
+            return true;
+        }
+        return false;
     }
 }

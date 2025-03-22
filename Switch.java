@@ -34,7 +34,7 @@ public class Switch extends JComponent{
             @Override
             public void mousePressed(MouseEvent e) {
                 status = !status;
-                flag = false;
+                flag = true;
             }
 
             @Override
