@@ -17,14 +17,17 @@ public class Menu extends JPanel{
         setBackground(Color.WHITE);
         setPreferredSize(new Dimension(width, height));
         menus = new HashMap<>();
-        menus.put(MenuOption.SETTINGS,new MenuIcon("images/gear.png", width));
+
+        //create new MenuIcons with associated images
+        menus.put(MenuOption.HOME,new MenuIcon("images/home.png", width));
         menus.put(MenuOption.LIGHTS,new MenuIcon("images/lightbulb.png", width));
         menus.put(MenuOption.ELECTRICAL,new MenuIcon("images/plug.png", width));
         menus.put(MenuOption.POWER, new MenuIcon("images/power.png", width));
+
         for(MenuOption menu : MenuOption.values()){
             add(menus.get(menu));
         }
-        currentMenu = MenuOption.SETTINGS;
+        currentMenu = MenuOption.HOME;
     }
 
     public MenuOption getCurrentMenu(){

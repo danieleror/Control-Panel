@@ -1,5 +1,5 @@
 public enum MenuOption {
-    SETTINGS,
+    HOME,
     LIGHTS,
     ELECTRICAL,
     POWER
