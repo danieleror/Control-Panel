@@ -17,7 +17,7 @@ public class Window extends JFrame{
     public Window(){
         FPS = 5.0;
         inactiveFrameCount = 0;
-        sleepAfterSeconds = 2;
+        sleepAfterSeconds = 60;
         sleeping = false;
 
         //gets the device screen size and sets that to be the size of the JFrame
@@ -31,15 +31,15 @@ public class Window extends JFrame{
         controller = new Controller((int) (width*0.9), height);
         sleepScreen = new SleepScreen(width, height);
         getContentPane().add(menu, BorderLayout.EAST); //puts the menu on the right side of the screen
-        getContentPane().add(controller, BorderLayout.WEST);        
+        getContentPane().add(controller.getContents(), BorderLayout.WEST);        
 
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);//stops the program when the window closes
         pack();
 
         //full screen
-        GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
-        device.setFullScreenWindow(getWindows()[0]);
+        // GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
+        // device.setFullScreenWindow(getWindows()[0]);
 
 
         setVisible(true);
@@ -62,8 +62,8 @@ public class Window extends JFrame{
             if(actionFromSleepScreen || actionFromMenu || actionFromController){
                 inactiveFrameCount = 0;
                 if(sleeping){ 
-                    getContentPane().remove(sleepScreen);
-                    getContentPane().add(controller, BorderLayout.WEST);
+                    getContentPane().removeAll();
+                    getContentPane().add(controller.getContents(), BorderLayout.WEST);
                     getContentPane().add(menu, BorderLayout.EAST);
                     revalidate();
                     sleeping = false;
@@ -76,8 +76,7 @@ public class Window extends JFrame{
             if(inactiveFrameCount >= sleepAfterSeconds*FPS){
                 inactiveFrameCount = (int) (sleepAfterSeconds*FPS); //so the screen stays asleep, but will not increment to too large a number
                 if(!sleeping){
-                    getContentPane().remove(controller);
-                    getContentPane().remove(menu);
+                    getContentPane().removeAll();
                     getContentPane().add(sleepScreen);
                     revalidate();
                     sleeping = true;

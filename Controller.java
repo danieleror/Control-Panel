@@ -1,26 +1,27 @@
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-public class Controller extends JPanel{
+public class Controller{
     private MenuOption currentMenu;
+    private ElectricPanel electricPanel;
     
-    private Switch s;
-
     public Controller(int width, int height) {
-        setBackground(Color.DARK_GRAY);
         currentMenu = MenuOption.HOME;
-        setPreferredSize(new Dimension(width, height));
-        s = new Switch(100);
-        add(s);
+        electricPanel = new ElectricPanel(width, height);
     }
 
     public boolean update(MenuOption currentMenu){
         this.currentMenu = currentMenu;
-        if(s.checkFlag())
+        if(electricPanel.checkFlag())
             return true;
         return false;
+    }
+
+    public void repaint(){
+        electricPanel.repaint();
+    }
+
+    public JLayeredPane getContents(){
+        return electricPanel;
     }
 
 }

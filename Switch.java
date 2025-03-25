@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
 
 public class Switch extends JComponent{
+    public static final double WIDTH_TO_HEIGHT_RATIO = 2.5;
 
     private int width, height;
 
@@ -12,10 +13,10 @@ public class Switch extends JComponent{
 
     private boolean status, flag;  // true if switch is on, false if it is off
 
-    public Switch(int size){
+    public Switch(int x, int y, int size){
         height = size;
-        width = (int) (size * 2.5);
-        setPreferredSize(new Dimension(width, height));
+        width = (int) (size * WIDTH_TO_HEIGHT_RATIO);
+        setBounds(x, y, width, height);
 
         primaryColor = Color.WHITE;
         offColor = Color.LIGHT_GRAY;
@@ -53,6 +54,10 @@ public class Switch extends JComponent{
             }
             
         });
+    }
+
+    public Switch(double x, double y, double size){
+        this((int) x, (int) y, (int) size);
     }
 
     /**
