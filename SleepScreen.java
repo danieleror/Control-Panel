@@ -62,5 +62,4 @@ public class SleepScreen extends JPanel{
         g2.drawString(message, getWidth()/2 - (int) (message.length()*(fontSize/2)/2), getHeight()/2);
     }
 
-
 }
