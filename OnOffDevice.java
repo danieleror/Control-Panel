@@ -34,7 +34,7 @@ public class OnOffDevice extends JPanel {
         g2.setColor(nameColor);
         g2.setFont(new Font("Futura", Font.BOLD, fontSize));
         FontMetrics fontData = g2.getFontMetrics();
-        g2.drawString(name, fontSize/2, fontData.getAscent() + fontData.getDescent()/2);
+        g2.drawString(name, fontSize/2, fontData.getAscent() + fontData.getDescent());
     }
 
     public boolean checkFlag(){
