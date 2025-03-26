@@ -28,7 +28,7 @@ public class Window extends JFrame{
 
         //initializes and adds panels
         menu = new Menu((int) (width*0.1), height);
-        controller = new Controller((int) (width*0.9), height);
+        controller = new Controller((int) (width*0.9), height, menu.getCurrentMenu());
         sleepScreen = new SleepScreen(width, height);
         getContentPane().add(menu, BorderLayout.EAST); //puts the menu on the right side of the screen
         getContentPane().add(controller.getContents(), BorderLayout.WEST);        
@@ -38,8 +38,8 @@ public class Window extends JFrame{
         pack();
 
         //full screen
-        // GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
-        // device.setFullScreenWindow(getWindows()[0]);
+        GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
+        device.setFullScreenWindow(getWindows()[0]);
 
 
         setVisible(true);
@@ -53,6 +53,13 @@ public class Window extends JFrame{
             boolean actionFromMenu = menu.update();
             boolean actionFromController = controller.update(menu.getCurrentMenu());
             boolean actionFromSleepScreen = sleepScreen.update();
+
+            if(controller.hasMenuChanged()){
+                getContentPane().removeAll();
+                getContentPane().add(controller.getContents(), BorderLayout.WEST);
+                getContentPane().add(menu, BorderLayout.EAST);
+                revalidate();
+            }
 
             controller.repaint();
             menu.repaint();

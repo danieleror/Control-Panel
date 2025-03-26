@@ -22,13 +22,13 @@ public class Menu extends JPanel{
         menus.put(MenuOption.HOME,new MenuIcon("images/home.png", width));
         menus.put(MenuOption.LIGHTS,new MenuIcon("images/lightbulb.png", width));
         menus.put(MenuOption.ELECTRICAL,new MenuIcon("images/plug.png", width));
-        menus.put(MenuOption.POWER, new MenuIcon("images/power.png", width));
+        menus.put(MenuOption.SETTINGS, new MenuIcon("images/gear.png", width));
 
         //adds all menus to map and sets HOME to be selected menu on startup
         for(MenuOption menu : MenuOption.values()){
             add(menus.get(menu));
         }
-        currentMenu = MenuOption.HOME;
+        currentMenu = MenuOption.ELECTRICAL;
 
     }
 
@@ -45,7 +45,7 @@ public class Menu extends JPanel{
                 //if this menu was clicked, save that the mouse was pressed, and save the currentMenu
                 mousePressed = true;
                 currentMenu = menu;
-                if(menu == MenuOption.POWER)
+                if(menu == MenuOption.SETTINGS)
                     System.exit(0);  //Powers off if power button was clicked
             }
         }
